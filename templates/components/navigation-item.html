@@ -1,0 +1,11 @@
+
+<a href="{{url}}">{{name}}</a>{{#if children}}<i class="nav-icon"></i>{{/if}}
+{{#if children}}
+  <ul class="navigation-tier nav-submenu">
+    {{#each children}}
+      <li class="nav-submenu-item {{#if children}}has-dropdown{{/if}}">
+        {{> components/navigation-item}}
+      </li>
+    {{/each}}
+  </ul>
+{{/if}}

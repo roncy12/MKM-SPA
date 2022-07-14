@@ -1,0 +1,112 @@
+<!doctype html>
+<html class="no-js" lang="{{ locale_name }}">
+
+<head>
+  <script>document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/,'js');</script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1">
+  <meta name="msvalidate.01" content="BC6F22A73D098C6FBB55C9897CD1FB43" />
+
+  {{{head.meta_tags}}}
+
+  <title>{{head.title}}</title>
+
+  {{{head.config}}}
+
+  <link href="{{head.favicon}}" rel="shortcut icon">
+
+  {{{stylesheet '/assets/css/theme.css'}}}
+
+  {{getFontsCollection}}
+
+  {{{head.scripts}}}
+  {{{head.rsslinks}}}
+
+  {{> components/common/theme-object}}
+  {{> components/global-injects}}
+  {{{snippet 'html_head'}}}
+
+  {{> components/common/theme-object}}
+  {{> components/global-injects}}
+  {{{snippet 'html_head'}}}
+
+    {{#if page_type '===' 'default'}}
+        {{> core/structured-data/website}}
+    {{/if}}
+  
+  {{#block "head"}}{{/block}}
+  {{> components/header/assets}}
+  
+  <!-- Bing COde -->
+  <script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"26003296"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script>
+  <!-- Bing COde End -->
+</head>
+
+<body class="{{> components/body-classes}} mobile-nav-closed" data-currency-token="{{settings.money.currency_token}}" data-currency-location="{{settings.money.currency_location}}">
+  {{#if page_type '===' 'product'}}
+    {{> components/common/facebook-like}}
+  {{else if page_type '===' 'blog'}}
+    {{> components/common/facebook-like}}
+  {{else if page_type '===' 'blog_post'}}
+    {{> components/common/facebook-like}}
+  {{/if}}
+
+  {{#if theme_settings.show_quick_shop}}
+    <div class="quick-shop-wrapper" data-quick-shop-wrapper>
+      <div class="quick-shop" data-quick-shop></div>
+      {{> components/common/spinner}}
+      <button class="quick-shop-close" data-quick-shop-close>
+        <i class="icon-close"></i>
+      </button>
+    </div>
+  {{/if}}
+
+
+  {{> components/header/header-banners}}
+
+<div class="svg-icons">{{> components/icons/svg}}</div>
+    {{> components/header}}
+  <div class="main-content">
+    {{#block "page"}}{{/block}}
+  </div>
+
+
+  {{> components/footer}}
+  {{> components/footer/assets}}
+
+  {{#if page_type '===' 'default'}}
+  {{else}}
+      {{> core/structured-data/breadcrumbs}}
+  {{/if}}
+
+  <script>
+    function startupApp(stencilBootstrap) {
+      stencilBootstrap("{{template_file}}", {{jsContext}}).load();
+    }
+  </script>
+
+  {{#if in_production}}
+    <script src="{{cdn '/assets/js/bundle.js'}}"></script>
+    <script>
+      startupApp(stencilBootstrap);
+    </script>
+  {{else}}
+    <script src="{{cdn '/assets/jspm_packages/system.js'}}"></script>
+    <script src="{{cdn '/assets/config.js'}}"></script>
+    <script src="{{cdn '/assets/js/dependency-bundle.js'}}"></script>
+    <script>
+      System.import("js/app").then(function(){ startupApp(stencilBootstrap)});
+    </script>
+      <script src="{{cdn '/assets/js/bundle.js'}}"></script>
+      <script>
+        startupApp(stencilBootstrap);
+      </script>
+  {{/if}}
+
+
+
+  {{{footer.scripts}}}
+  {{{snippet 'footer'}}}
+</body>
+</html>

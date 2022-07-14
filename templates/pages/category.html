@@ -1,0 +1,109 @@
+---
+category:
+  products:
+    limit: {{theme_settings.product_results_per_page}}
+---
+
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+
+  <header class="sub-header">
+    {{> components/common/breadcrumbs breadcrumbs}}
+  </header>
+
+  <section class="layout-block product-grid category-content">
+
+    <div class="product-grid-container {{#if category.faceted_search_enabled}}has-sidebar{{/if}}">
+      <div class="product-grid-sidebar">
+        <h1 class="category-title section-title">{{category.name}}</h1>
+      </div>
+      <div class="category-right">
+        {{#if pagination.category.links.length}}
+          {{> components/common/pagination pagination.category}}
+        {{/if}}
+        {{> components/sorting sort=pagination.category.sort}}
+      </div>
+    </div>
+    <div class="product-grid-container {{#if category.faceted_search_enabled}}has-sidebar{{/if}}">
+      {{#if category.products.length}}
+        {{#if category.facets.length}}
+          {{#if category.faceted_search_enabled}}
+            <div class="product-grid-sidebar">
+              <div class="left-sidebar">
+              <h3 class="section-title faceted-search-title show-filter">{{lang 'category.sidebar.shop_products'}}</h3>      
+                {{> components/category/category-navigation categoryid=category.id }}
+              </div>
+              <div class="product-grid-filters">
+                {{> components/category/filters}}
+              </div>
+            </div>
+          {{/if}}
+        {{/if}}
+      {{/if}}
+      
+        <div class="product-grid-list" data-quickshop>
+          {{> components/category/product-index}}
+        </div>
+
+    </div>
+  </section>
+
+  {{#if banners.top}}
+    <section class="productlist-banner productlist-banner-top">
+      {{#each banners.top}}
+        <div class="productlist-banner-inner">
+          <div class="container">
+            {{{this}}}
+          </div>
+        </div>
+      {{/each}}
+    </section>
+  {{/if}}
+  
+  <section class="layout-block product-grid-header{{#if category.faceted_search_enabled}}has-sidebar{{/if}}">
+    <div class="category-details">
+      <div class="category-details-wrap {{#if category.image}}has-image{{/if}}">
+        <div class="category-details-row">
+
+          {{#if category.image}}
+            <div class="category-image">
+              <img src="{{getImage category.image 'product_item'}}">
+            </div>
+          {{/if}}
+
+          <div class="category-info {{#if category.description.length}}has-description{{/if}}">
+            {{#if category.description.length}}
+              <div class="category-description content-col2">{{{category.description}}}</div>
+            {{/if}}
+          </div>
+
+          {{{snippet 'categories'}}}
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{#if banners.bottom}}
+    <section class="productlist-banner productlist-banner-bottom">
+      {{#each banners.bottom}}
+        <div class="productlist-banner-inner">
+          <div class="container">
+            {{{this}}}
+          </div>
+        </div>
+      {{/each}}
+    </section>
+  {{/if}}
+
+{{/partial}}
+
+{{> layout/base}}

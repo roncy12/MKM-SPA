@@ -1,0 +1,121 @@
+<section class="navigation-wrap navigation-alternate
+  {{#if theme_settings.logo-position '==' 'logo-right'}}navigation-left{{/if}}
+  {{#if theme_settings.logo-position '==' 'logo-center'}}navigation-center{{/if}}">
+  <nav class="navigation">
+
+    <button class="navigation-toggle-mobile-wrapper close">
+      <span class="navigation-toggle-mobile"><i class="fa fa-close"></i></span>
+    </button>
+
+    <div class="mobile-branding">
+      {{#if settings.store_logo.image}}
+        <a class="header-branding-logo" href="{{urls.home}}">
+          <img class="header-branding-image" src="{{getImage settings.store_logo.image 'logo'}}" alt="{{settings.store_logo.title}}">
+        </a>
+      {{else}}
+        <h1 class="header-branding-text">
+          <a href="{{urls.home}}">{{settings.store_logo.title}}</a>
+        </h1>
+      {{/if}}
+      {{> components/header/top}}
+
+      {{#if settings.account_creation_enabled}}
+        <p class="user-loggedin">
+          {{#if customer}}
+            <span>Welcome {{customer.name}}!</span> | <a href="{{urls.auth.logout}}">{{lang 'header.log_out' }}</a>
+          {{/if}}
+        </p>
+      {{/if}}
+
+    </div> 
+
+    <ul class="mobile-actions">
+
+      {{#if settings.account_creation_enabled}}
+        <li class="mobile-action-item user-account">
+        {{#if customer}}
+          <a href="{{urls.account.index}}">
+            <i class="fa fa-user"></i>
+          </a>
+        {{else}}
+          <a href="{{urls.auth.login}}">
+            <i class="fa fa-user"></i>
+          </a>
+        {{/if}}
+        </li>
+      {{/if}}
+
+      <li class="mobile-action-item user-orders">
+        <a href="{{urls.account.orders.all}}">
+          <i class="fa fa-list-ul"></i> 
+        </a>
+      </li>
+
+      <li class="mobile-action-item cart-count-preview">
+        <a href="{{urls.cart}}">
+          <i class="fa fa-shopping-cart"></i> {{#if cart.items}}<span class="cart-count">{{cart.quantity}}</span>{{/if}}
+        </a>
+      </li>
+
+      {{#if settings.show_wishlist}}
+        <li class="mobile-action-item user-wishlist">
+        <a href="{{urls.account.wishlists.all}}">
+          <i class="fa fa-heart"></i>
+        </a>
+      </li>
+      {{/if}}
+
+      {{#if settings.gift_certificates_enabled}}
+        <li class="mobile-action-item user-gift-cert">
+        <a href="{{urls.gift_certificate.purchase}}">
+          <i class="fa fa-gift"></i>
+        </a>
+      </li>
+      {{/if}}
+
+    </ul>
+
+    <div class="header-branding">
+      {{#if settings.store_logo.image}}
+        <a class="header-branding-logo" href="{{urls.home}}">
+          <img class="header-branding-image" src="{{getImage settings.store_logo.image 'logo'}}" alt="{{settings.store_logo.title}}">
+        </a>
+      {{else}}
+        <h1 class="header-branding-text">
+          <a href="{{urls.home}}">{{settings.store_logo.title}}</a>
+        </h1>
+      {{/if}}
+    </div>
+    <div class="header-nav">
+      <h2 class="tag-line">{{lang 'header.tagline'}}</h2>
+      <div class="search-form-header">
+        {{{snippet 'forms_search'}}}
+        <form class="search-form" action="{{urls.search}}">
+          <input class="search-input" name="search_query" placeholder="{{lang 'header.search'}}">
+          <button class="search-submit" type="submit">
+              {{lang 'header.search_submit'}}
+          </button>
+        </form>
+        <p class="search-ext-text"><a href="/search.php" class="adv-search-link">{{lang 'header.advanced_search'}}</a></p>
+      </div>
+
+
+      <div class="mobile-main-navigation">
+    		<ul class="navigation-tier nav-menu">
+
+          {{#each categories}}
+            <li class="nav-menu-item {{#if children}}has-dropdown{{/if}}">
+              {{> components/navigation-item}}
+            </li>
+          {{/each}}
+
+
+          <li class="nav-menu-item">
+            <a href="/about-us/">About Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</section>

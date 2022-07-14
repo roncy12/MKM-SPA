@@ -1,0 +1,49 @@
+{{#if price}}
+  <div class="price">
+    {{#if price.without_tax}}
+      <span class="price-withouttax" data-price="without-tax">
+        {{#if price.rrp_without_tax}}
+          <span class="price-rrp" data-price-rrp="without-tax">
+            {{price.rrp_without_tax.formatted}}
+          </span>
+        {{/if}}
+
+        <span class="price-value" data-price-value="without-tax">
+          {{price.without_tax.formatted}}
+        </span>
+
+        {{#if price.with_tax}}
+          <span class="price-tax-label">{{lang 'core.price.without_tax' tax_label=price.tax_label}}</span>
+        {{/if}}
+      </span>
+    {{/if}}
+
+
+    {{#if price.with_tax}}
+      <span class="price-withtax" data-price="with-tax">
+        {{#if price.rrp_with_tax}}
+          <span class="price-rrp" data-price-rrp="with-tax">
+            {{price.rrp_with_tax.formatted}}
+          </span>
+        {{/if}}
+
+        <span class="price-value" data-price-value="with-tax">
+          {{price.with_tax.formatted}}
+        </span>
+
+        {{#if price.without_tax}}
+          <span class="price-tax-label">{{lang 'core.price.with_tax' tax_label=price.tax_label}}</span>
+        {{/if}}
+      </span>
+    {{/if}}
+
+
+    {{#if show_savings}}
+      {{#if price.saved}}
+        <span class="price-saved" data-price-saved>
+          {{lang 'core.price.you_save' amount=price.saved.formatted}}
+        </span>
+      {{/if}}
+    {{/if}}
+  </div>
+{{/if}}

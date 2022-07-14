@@ -1,0 +1,30 @@
+---
+cart: true
+---
+
+{{#partial "page"}}
+
+<header class="sub-header">
+</header>
+
+<section class="layout-block">
+
+  <div class="page-header">
+    <h1 class="page-title centered">Uh Oh!</h1>
+  </div>
+
+  <div class="page-container">
+    <div class="page-content">
+      <div class="narrow text-center">
+        <p><strong>The page you're trying to visit seems to have gone missing!</strong></p>
+        <p>While we try and figure out where it got off to, you can check out one of our other fantastic product categories or use our search tool to get you back on track!</p>
+      </div>
+  {{> components/home/featured-categories}}
+    </div>
+  </div>
+
+</section>
+
+{{/partial}}
+
+{{> layout/base}}

@@ -1,0 +1,52 @@
+{{> components/header/hello-bar}}
+
+<header class="main-header {{theme_settings.logo-position}}" role="banner" id="top-of-doc">
+
+  <section class="header-topbar">
+    <div class="header-topbar-inner">
+      {{> components/header/header-tools}}
+    </div>
+  </section>
+
+  <div class="mobile-header-branding">
+    <div class="navigation">
+      <span class="mobile-action-item search-toggle">
+        <a href="#"><i class="fa fa-search"></i></a>
+      </span>
+      <div class="mobile-search-wrapper search-form-wrapper">
+        <form class="search-form" action="{{urls.search}}">
+          <input class="search-input" name="search_query" placeholder="{{lang 'header.search'}}">
+        </form>
+      </div>
+    </div>
+    {{#if settings.store_logo.image}}
+      <a class="header-branding-logo" href="{{urls.home}}">
+        <img class="header-branding-image" src="{{getImage settings.store_logo.image 'logo'}}" alt="{{settings.store_logo.title}}">
+      </a>
+    {{else}}
+      <h1 class="header-branding-text">
+        <a href="{{urls.home}}">{{settings.store_logo.title}}</a>
+      </h1>
+    {{/if}}
+    <a href="tel:{{lang 'global.phone_number.tel'}}" onclick="ga('send', 'event', 'Phone Call Tracking', 'Click/Touch', 'Call');" class="tel-num">{{lang 'global.phone_number.val'}}</a>
+  </div>
+
+
+  {{{snippet 'header'}}}
+</header>
+{{> components/navigation-alternate}}
+
+<div class="main-navigation">
+  <ul class="navigation-tier nav-menu">
+
+    {{#each categories}}
+      <li class="nav-menu-item {{#if children}}has-dropdown{{/if}}">
+        {{> components/navigation-item}}
+      </li>
+    {{/each}}
+
+    <li class="nav-menu-item">
+      <a href="/about-us/">About Us</a>
+    </li>
+  </ul>
+</div>

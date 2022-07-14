@@ -1,0 +1,161 @@
+/* Custom CSS */
+#product-videos{
+    .product-video-container{
+        @media (min-width: 768px){
+            float: left;
+            width: 50%;
+            padding: 0 10px 15px;
+        }
+    }
+}
+
+[id*="ratingbadge"] {
+    left: 0!important;
+    right: auto!important;
+  @include breakpoint(l-up) {
+    bottom: 105px!important;
+  }
+}
+.footer-btm{
+  @media (max-width: 480px){
+        padding-bottom: 70px;
+    }
+}
+
+.text-red{
+    color: #f00;
+}
+
+.single-post{
+    .blog-post-content p{
+        float: none;
+    }
+    .blog-post-sharing{
+        .sharing-button{
+            padding-left: 10px;
+            font-size: 24px;
+            line-height: 26px;
+        }
+    }
+}
+.hello-bar{
+    color: #212121;
+    background: #ffd600;
+}
+.blog-img img{
+    width:auto !important;
+    margin:0 !important;
+}
+
+/*-------------------------------
+      Pop Up Styles
+-------------------------------*/
+
+#fvpp-blackout {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.7);
+    z-index: 999;
+}
+
+.home-popup-wrapper {
+    width: 100%;
+    max-width: 550px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+.home-popup-wrapper .splash-image img{
+    position: relative;
+    left: -5px;
+    max-width: initial;
+}
+
+.home-popup-wrapper .popup-contents {
+    text-align: center;
+    padding: 15px 15px;
+    background: #e2f1fc;
+    position: relative;
+    top: -7px;
+}
+
+.home-popup-wrapper .popup-contents h2 {
+    font-size: 34px;
+    color: #0b85c8;
+    text-transform: uppercase;
+}
+
+.home-popup-wrapper .popup-contents p {
+    font-size: 16px;
+    color: #212121;
+}
+
+.home-popup-wrapper .footer-newsletter-form {
+    margin: 0 auto 20px;
+    max-width: 420px;
+}
+
+.home-popup-wrapper .footer-newsletter-form .newsletter-signup-email {
+    border: 1px solid #1184c6;
+    padding-right: 155px;
+}
+
+.home-popup-wrapper .popup-contents .privacy-terms {
+    font-size: 14px;
+    color: #1184c6;
+    cursor: pointer;
+}
+
+.footer-newsletter-form .newsletter-signup-submit {
+    width: 150px;
+}
+
+.home-popup-wrapper .footer-newsletter-form .newsletter-signup-submit input {
+    background: #1184c6;
+    text-transform: uppercase;
+}
+
+#fvpp-close {
+    color: #fff;
+    font-weight: bold;
+    position: absolute;
+    top: 17px;
+    right: 10px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+    .home-popup-wrapper .splash-image {
+        display: none;
+    }
+    
+    #fvpp-close {
+      color: #1184c6;
+      top: 0;
+      right: 11px;
+      
+    }
+    
+    .home-popup-wrapper .footer-newsletter-form .newsletter-signup-email {
+      padding-right: 102px;
+    }
+
+    .footer-newsletter-form .newsletter-signup-submit {
+      width: 100px;
+    }
+}
+
+.sticky-hello-bar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}

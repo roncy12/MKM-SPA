@@ -1,0 +1,15 @@
+{{!
+  @param date_published:
+         > blog.posts.date_published
+         > blog.post.date_published
+  @param author
+         > blog.posts.author
+         > blog.post.author
+}}
+
+<p class="post-meta">
+  <time class="post-date">{{date_published}}</time>
+  {{#if author.length}}
+   - <span class="post-author">{{author}}</span>
+  {{/if}}
+</p>

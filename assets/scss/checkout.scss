@@ -1,0 +1,23 @@
+/*! Theme: Foundry v1.1.15 */
+.header {
+  //scss-lint:disable NameFormat
+  background-color: stencilColor("header-background-color");
+}
+
+.header-logo {
+    display: block;
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+    a{
+        display: block;
+        height: 126px;
+        background: url(https://cdn2.bigcommerce.com/n-nr1m3w/cq282mw/product_images/uploaded_images/mkm-pool-spa-delivery-banner.jpg) no-repeat 50% 50%;
+        background-size: contain;
+    }
+    img {
+        display: none;
+        max-width: 200px;
+        max-height: 85px;
+    }
+}

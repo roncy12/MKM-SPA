@@ -1,0 +1,286 @@
+<div class="product-details" data-product-details data-product-title="{{product.title}}" itemscope itemtype="http://schema.org/Product">
+  <div class="single-product-alerts">
+    <div class="product-message alert" data-product-message></div>
+
+    {{#each product.reviews.messages}}
+      {{#if error}}
+        {{> components/alerts/alert-error this.error}}
+      {{/if}}
+      {{#if success}}
+        {{> components/alerts/alert-success this.success}}
+      {{/if}}
+    {{/each}}
+
+    {{#if product.out_of_stock}}
+      {{#if product.out_of_stock_message}}
+        {{> components/alerts/alert-error product.out_of_stock_message}}
+      {{else}}
+        {{> components/alerts/alert-error (lang 'products.sold_out')}}
+      {{/if}}
+    {{/if}}
+  </div>
+
+  <div class="single-product-information">
+
+
+    {{#if titletag}}
+    <h2 class="single-product-title">
+      <span itemprop="name">{{product.title}}</span>
+    </h2>
+    {{else}}
+    <h1 class="single-product-title">
+      <span itemprop="name">{{product.title}}</span>
+    </h1>
+    {{/if}}
+    <meta itemprop="image" content="{{getImage product.main_image}}">
+    <meta itemprop="sku" content="{{product.sku}}">
+    <meta itemprop="description" content="{{product.description}}">
+
+    {{#if settings.show_product_rating}}
+      <div class="single-product-rating"{{#if product.num_reviews '>' 0}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}>
+        {{#if product.num_reviews '>' 0}}
+    	<meta itemprop="ratingValue" content="{{product.rating}}">
+    	<meta itemprop="reviewCount" content="{{product.num_reviews}}">
+        {{/if}}
+        {{> components/products/ratings rating=product.rating size="medium"}}
+        {{#if product.num_reviews}}<a href="#product-reviews" class="review-cnt">({{product.num_reviews}} product reviews)</a>{{else}}<a href="#modal-review-form" class="review-link">{{ lang 'product.reviews.leave_review' }}</a>{{/if}}
+      </div>
+
+      {{{snippet 'product_rating'}}}
+    {{/if}}
+  {{#if product.sku}}
+    <div class="single-product-meta-item single-product-meta-item-sku">
+      <span class="single-product-meta-item-label">{{lang 'product.sku'}}:</span>
+      <span class="single-product-meta-item-value" data-product-sku>{{product.sku}}</span>
+    </div>
+  {{/if}}
+    <div class="single-product-price">
+      {{#if product.call_for_price}}
+        <div class="product-call-for-price">
+          {{product.call_for_price}}
+        </div>
+      {{else}}
+        {{> components/products/price context="product" price=product.price show_savings=true}}
+      {{/if}}
+    </div>
+    <div itemprop="brand" itemscope itemtype="http://schema.org/Thing"><meta itemprop="name" content="{{#if product.brand.name}}{{product.brand.name}}{{else}}{{settings.store_name}}{{/if}}"></div>
+    {{#if product.brand.name}}
+    <div class="single-product-meta-item">
+      <span class="single-product-meta-item-label">Brand:</span>
+      <span class="single-product-meta-item-value"><a href="{{product.brand.url}}">{{product.brand.name}}</a></span>
+    </div>
+    {{/if}}
+  {{#if product.weight}}
+    <div class="single-product-meta-item single-product-meta-item-weight">
+      <span class="single-product-meta-item-label">{{lang 'product.weight'}}:</span>
+      <span class="single-product-meta-item-value" data-product-weight>{{product.weight}}</span>
+    </div>
+  {{/if}}
+
+    <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+      <meta itemprop="priceCurrency" content="{{currency_selector.active_currency_code}}">
+      <meta itemprop="price" content="{{#if product.price.without_tax}}{{product.price.without_tax.value}}{{/if}}{{#if product.price.with_tax}}{{#unless product.price.without_tax}}{{product.price.with_tax.value}}{{/unless}}{{/if}}">
+      <meta itemprop="itemCondition" content="{{#if product.condition '===' 'New'}}http://schema.org/NewCondition{{/if}}{{#if product.condition '===' 'Used'}}http://schema.org/UsedCondition{{/if}}{{#if product.condition '===' 'Refurbished'}}http://schema.org/RefurbishedCondition{{/if}}">
+      <meta itemprop="availability" content="{{#unless product.out_of_stock_message}}http://schema.org/InStock{{else}}http://schema.org/OutOfStock{{/unless}}">
+      <div itemprop="seller" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="{{settings.store_name}}"></div>
+    </div>
+    
+    {{> components/products/product/additional-details}}
+  </div>
+
+  <div class="single-product-form">
+    <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data" data-product-options-count="{{product.options.length}}" data-product-form data-validated-form>
+      <input type="hidden" name="action" value="add">
+      <input type="hidden" name="product_id" value="{{product.id}}" data-product-id>
+
+      
+
+      <div class="single-product-options">
+        {{#if product.options}}
+          <div class="product-options" data-product-option-change>
+            {{#each product.options}}
+              {{{dynamicComponent 'components/products/options'}}}
+            {{/each}}
+          </div>
+        {{/if}}
+
+        {{#if product.customizations}}
+          <div class="product-customizations">
+            {{#each product.customizations}}
+              {{{dynamicComponent 'components/products/customizations'}}}
+            {{/each}}
+          </div>
+        {{/if}}
+      </div>
+
+      {{#if product.event_date}}
+        <div class="product-event form-field form-field-date form-required">
+          <span class="form-label">
+            <span class="form-field-title">
+              {{product.event_date.name}}
+              <span class="required-text">{{lang 'common.required'}}</span>
+            </span>
+            <span class="form-field-control">
+              <span class="form-select-wrapper">
+                <select class="form-input form-select" name="EventDate[Mth]" required>
+                  <option selected disabled>{{lang 'forms.date.month'}}</option>
+                  {{#for 1 12}}
+                    <option value="{{$index}}">{{getShortMonth $index}}</option>
+                  {{/for}}
+                </select>
+              </span>
+              <span class="form-select-wrapper">
+                <select class="form-input form-select" name="EventDate[Day]" required>
+                  <option selected disabled>{{lang 'forms.date.day'}}</option>
+                  {{#for 1 31}}
+                    <option value="{{$index}}">{{$index}}</option>
+                  {{/for}}
+                </select>
+              </span>
+              <span class="form-select-wrapper">
+                <select class="form-input form-select" name="EventDate[Yr]" required>
+                  <option selected disabled>{{lang 'forms.date.year'}}</option>
+                  {{#if product.event_date.earliest_year '===' product.event_date.latest_year}}
+                    <option value="{{product.event_date.earliest_year}}" >{{product.event_date.earliest_year}}</option>
+                  {{else}}
+                    {{#for product.event_date.earliest_year product.event_date.latest_year}}
+                      <option value="{{$index}}" >{{$index}}</option>
+                    {{/for}}
+                  {{/if}}
+                </select>
+              </span>
+            </span>
+          </span>
+          {{#if product.event_date.date_start}}
+             <span class="product-event-bounds">{{lang 'product.event_bounds' start_date=product.event_date.date_start end_date=product.event_date.date_end}}</span>
+          {{/if}}
+        </div>
+      {{/if}}
+	  
+	  
+	  {{#if product.can_purchase}}
+        {{#if product.show_quantity_input}}
+          <div class="single-product-options product-qty">            
+            <div class="product-options" data-product-option-change="">
+              <div class="form-field form-field-options form-field-inline form-field-select form-required" data-product-attribute="set-select">
+                <label class="form-label">
+                  <span class="form-field-title">Quantity <span class="required-text">*</span>
+                  </span>
+                  <span class="form-field-control">
+                    <div class="form-select-wrapper">
+                      <span class="form-selected-text">1</span>
+                      <select class="form-input form-select"  name="qty[]" aria-required="true">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                      </select>
+                    </div>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        {{else}}
+          <input type="hidden" name="qty[]" value="1">
+        {{/if}}
+      {{/if}}
+	  
+    </form>
+  </div>
+
+  <div class="form-actions single-product-add-to-cart" data-product-add>
+    {{#if product.can_purchase}}
+      <div class="product-add-button-wrapper">
+        <button class="product-add-button button button-secondary {{#if product.out_of_stock}}disabled{{/if}}" data-button-purchase {{#if product.pre_order}}data-button-preorder{{/if}} {{#if product.out_of_stock}}disabled{{/if}}>
+          <span data-button-text>
+            {{#if product.out_of_stock}}
+              {{lang 'product.sold_out'}}
+            {{else}}
+              {{#if product.pre_order}}
+                {{lang 'product.pre_order'}}
+              {{else}}
+                {{lang 'product.add_to_cart'}}
+              {{/if}}
+            {{/if}}
+          </span>
+        </button>
+        {{> components/common/spinner}}
+        {{#if product.can_purchase}}
+          {{#if quickshop}}
+            <a class="view-product-button button button-alt" href="{{product.url}}">View Product</a>
+          {{/if}}
+        {{/if}}
+      </div>
+    {{else}}
+      <div class="product-add-button-wrapper">
+        <button class="product-add-button button disabled" disabled>
+          <span data-button-text>
+            {{lang 'product.unavailable'}}
+          </span>
+        </button>
+      </div>
+    {{/if}}
+  </div>
+
+    {{#if settings.show_wishlist}}
+      <form class="single-product-add-to-wishlist" method="post" action="{{product.add_to_wishlist_url}}">
+        <input type="hidden" name="variation_id" value="">
+        <button class="text-button icon" type="submit">
+          <i class="fa fa-heart"></i> {{lang 'product.add_to_wishlist'}}
+        </button>
+      </form>
+    {{/if}}
+
+
+
+{{#if settings.show_product_reviews}}
+  {{#each product.reviews.list}}
+    <div itemprop="review" itemscope itemtype="http://schema.org/Review">
+        <meta itemprop="name" content="{{title}}">
+        <meta itemprop="reviewBody" content="{{text}}">
+        <div itemprop="itemReviewed" itemscope itemtype="http://schema.org/Product">
+            <meta itemprop="name" content="{{../product.title}}"><meta itemprop="image" content="{{getImage ../product.main_image}}">
+        </div>
+        <div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+            <meta itemprop="ratingValue" content="{{rating}}">
+        </div>
+        <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="name" content="{{name}}">
+        </div>
+        <div itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+            <meta itemprop="name" content="{{../settings.store_name}}">
+        </div>
+</div>
+  {{/each}}
+{{/if}}
+
+  {{{snippet 'product_details'}}}
+  
+  
+</div>
+
+{{!-- Product Modals --}}
+{{> components/products/bulk-pricing}}
+{{> components/products/review-modal}}

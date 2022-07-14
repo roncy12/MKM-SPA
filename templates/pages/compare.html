@@ -1,0 +1,107 @@
+---
+brands: true
+---
+
+{{#partial "page"}}
+
+<header class="sub-header">
+  {{> components/common/breadcrumbs breadcrumbs}}
+</header>
+
+<section class="layout-block">
+
+  <div class="compare-header">
+    <h1 class="page-title centered">{{lang 'compare.heading'}}</h1>
+  </div>
+
+  <div class="compare-grid">
+    <div class="compare-grid-item-list {{#compare ../comparisons.length 2 operator='=='}}two-columns{{/compare}}{{#compare ../comparisons.length 3 operator='=='}}three-columns{{/compare}}">
+
+      {{#each comparisons}}
+        <div class="compare-grid-item">
+          <div class="compare-grid-item-wrap">
+
+            <figure class="product-grid-item-thumbnail {{#if ../theme_settings.grid_aspect_ratio}}cropped-thumbnail aspect-{{../../theme_settings.grid_aspect_ratio}}{{/if}}">
+              <a class="{{#if ../theme_settings.grid_aspect_ratio}}cropped-thumbnail-block{{/if}}" href="{{url}}" title="{{name}}"
+                style="background-image:url({{#if image}}{{getImage image 'thumbnail'}}{{else}}{{cdn '/assets/icons/icon-no-image.svg'}}{{/if}});">
+
+                {{#if image}}
+                  <img class="{{#if ../../theme_settings.grid_aspect_ratio}}cropped-thumbnail-image{{/if}}" src="{{getImage image 'thumbnail'}}" alt="{{image.alt}}">
+                {{else}}
+                  <img class="{{#if ../../theme_settings.grid_aspect_ratio}}cropped-thumbnail-image{{/if}}" src="{{cdn '/assets/icons/icon-no-image.svg'}}" alt="{{lang 'product.no_image'}}">
+                {{/if}}
+              </a>
+
+              {{#compare ../comparisons.length 2 operator=">"}}
+                <div class="compare-remove-wrap">
+                  <span class="compare-remove">
+                    <a href="{{remove_url}}">{{lang 'compare.remove'}} <i class="fa fa-close"></i></a>
+                  </span>
+                </div>
+              {{/compare}}
+            </figure>
+
+            <div class="product-grid-item-details">
+              <h3 class="product-item-title truncate">
+                <a href="{{url}}" title="{{name}}">
+                  {{name}}
+                </a>
+              </h3>
+
+              <div class="product-grid-item-price">
+                {{#unless out_of_stock_message.length}}
+                  {{> components/products/price price=price}}
+                {{else}}
+                  <p class="product-price">{{lang 'product.sold_out'}}</p>
+                {{/unless}}
+              </div>
+
+
+                  <div class="">
+                    <div class="product-grid-item-rating">
+                    {{> components/products/ratings rating=rating size="medium"}}
+                    </div>
+                  </div>
+              <p class="product-grid-item-summary">{{{summary}}}...</p>
+              
+              {{#if custom_fields.length}}
+              <div class="product-custom-fields">
+                  <table class="tbl tbl-spec">
+                    {{#each custom_fields}}
+                      <tr class="product-details-block product-info-{{name}}">
+                        <td class="product-details-name">{{name}}:</td>
+                        <td class="product-details-value">{{value}}</td>
+                      </tr>
+                    {{/each}}
+                  </table>
+              </div>
+              {{/if}}
+
+              {{#if has_options}}
+                <a href="{{url}}" class="button" data-product-id="{{id}}">{{lang 'product.choose_options'}}</a>
+              {{else}}
+                {{#if show_cart_action}}
+                  {{#if pre_order}}
+                    <a href="{{add_to_cart_url}}" class="button button-pre-order" data-product-id="{{id}}" data-product-title="{{name}}">{{lang 'product.pre_order'}}</a>
+                  {{else}}
+                    <a href="{{add_to_cart_url}}" class="button add-to-cart" data-product-id="{{id}}" data-product-title="{{name}}">{{lang 'product.add_to_cart'}}</a>
+                  {{/if}}
+                {{else}}
+                  <a href="{{url}}" class="button button-disabled" data-product-id="{{id}}">{{lang 'product.sold_out'}}</a>
+                {{/if}}
+              {{/if}}
+
+            </div>
+
+          </div>
+        </div>
+      {{/each}}
+
+    </div>
+  </div>
+
+</section>
+
+{{/partial}}
+
+{{> layout/base}}

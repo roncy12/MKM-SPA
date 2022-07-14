@@ -1,0 +1,158 @@
+---
+carousel: true
+products:
+  featured:
+    limit: {{theme_settings.homepage_products_featured}}
+  top_sellers:
+    limit: {{theme_settings.homepage_products_popular}}
+  new:
+    limit: {{theme_settings.homepage_products_new}}
+blog:
+  recent_posts:
+    limit: 3
+---
+
+{{#partial "page"}}
+
+  {{#if carousel.slides.length}}
+    {{#if carousel}}
+    <div class="home-carousel">
+      {{> modules/carousel}}
+    </div>
+    {{/if}}
+  {{/if}}
+
+  {{#if page_type '===' 'default'}}
+    {{#if banners.top}}
+      <section class="page-banner page-banner-top home-banner">
+        {{#each banners.top}}
+          <div class="page-banner-inner">
+            <div class="banner rte">
+              {{{this}}}
+            </div>
+          </div>
+        {{/each}}
+      </section>
+    {{/if}}
+  {{/if}}
+
+  {{{snippet 'home_content'}}}
+  
+  {{#if theme_settings.homepage_products_featured}}
+  <div class="home-featured-products"> 
+    {{> components/products/featured
+      products=products.featured
+      quickshop=theme_settings.show_quick_shop
+      rowcount=theme_settings.featured_products_per_row
+      crop=theme_settings.grid_aspect_ratio}}
+  </div>
+  {{/if}}
+
+  {{> components/home/featured-categories}}
+
+  {{#if theme_settings.homepage_products_new}}
+  <div class="home-featured-products"> 
+    {{> components/products/new
+      products=products.new
+      quickshop=theme_settings.show_quick_shop
+      rowcount=theme_settings.new_products_per_row
+      crop=theme_settings.grid_aspect_ratio}}
+  </div>
+  {{/if}}
+
+  {{#if page_type '===' 'default'}}
+    {{#if banners.bottom}}
+      <section class="page-banner page-banner-bottom home-banner">
+        {{#each banners.bottom}}
+          <div class="page-banner-inner">
+            <div class="banner rte">
+              {{{this}}}
+            </div>
+          </div>
+        {{/each}}
+      </section>
+    {{/if}}
+  {{/if}}
+
+  {{#if theme_settings.homepage_products_popular}}
+  <div class="home-featured-products"> 
+    {{> components/products/popular
+      products=products.top_sellers
+      quickshop=theme_settings.show_quick_shop
+      rowcount=theme_settings.popular_products_per_row
+      crop=theme_settings.grid_aspect_ratio}}
+  </div>
+  {{/if}}
+
+  {{#if theme_settings.homepage_show_blog }}
+    <section class="blog-latest-posts section">
+      <div class="container">
+        <h3 class="section-title">{{lang 'home.latest_blog'}}</h3>
+        <div class="blog-items">
+          {{#each blog.recent_posts}}
+            {{> components/blog/blog-post-summary }}
+          {{/each}}
+        </div>
+      </div>
+    </section>
+  {{/if}}
+
+  {{#if theme_settings.homepage_show_testimonials}}
+    {{> components/snippets/testimonials}}
+  {{/if}}
+  <div class="banner-cta">
+  <div class="container"><span class="cta-title">Mailing list members receive discount coupons and special offers.</span> <a class="button button-alt" href="http://visitor.r20.constantcontact.com/d.jsp?llr=q4czyycab&amp;p=oi&amp;m=1102490405872&amp;sit=5o6utm4db&amp;f=b02aa8f0-6f5c-42d6-af8d-eb20362b52f7" target="_blank">Join Now!</a></div>
+</div></div>
+
+  {{#if theme_settings.homepage_show_widgets}}
+    {{> components/snippets/social-feeds}}
+  {{/if}}
+
+  {{#if theme_settings.homepage_show_newsletter}}
+    {{> components/snippets/newsletter-signup}}
+  {{/if}}
+  
+  <!-- Homepage Popup Markup -->
+ <div class="home-popup-wrapper" style="display:none;">
+        <div class="splash-image"><img src="//cdn7.bigcommerce.com/s-cq282mw/product_images/uploaded_images/water-splash.png" alt="Water Splash" /></div>
+        <div class="popup-contents">
+            <h2>MKM Pool Spa Friends <br /> Save Money!</h2>
+            <p>Sign up now to save 15% off your first order. We'll also send you great deals on pool supplies for a great summer.</p>
+            <form class="footer-newsletter-form form" action="/subscribe.php" method="post">
+                <input type="hidden" name="action" value="subscribe">
+                <input type="hidden" name="nl_first_name" value="bc">
+                <input type="hidden" name="check" value="1">
+                <label class="form-label show-for-sr" for="nl_email">Email Address</label>
+                <input class="newsletter-signup-email form-input" id="nl_email" name="nl_email" type="email" value="" placeholder="Email Address Here">
+                <div class="newsletter-signup-submit">
+                  <input class="submit button" type="submit" value="Save 15%">
+                </div>
+              </form>
+            <p class="privacy-terms">No Thanks, I don’t need this</p>
+        </div>
+    </div>
+
+<script src="/content/js/first-visit-popup.js"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+    
+// Homepage Popup Javascript 
+    $(function () {
+       $('.home-popup-wrapper').firstVisitPopup({
+          cookieName : 'homepage',
+          showAgainSelector: '#show-message'
+       });
+    });
+    
+    $('.home-popup-wrapper .privacy-terms').click(function(){
+        $("#fvpp-close").trigger('click');
+    })
+})    
+</script>
+
+{{/partial}}
+
+{{> layout/base}}
+
+

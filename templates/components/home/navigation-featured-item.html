@@ -1,0 +1,13 @@
+{{#if children}}
+	<span class="svg-icon collapse-item-title{{#if @index '==' 0}} show-collapse-item-title{{/if}}"><svg class="svg-nav-icon"><use xlink:href="#icon-collapse"></use></svg></span><span class="nav-icon-plus collapse-item-title{{#if @index '==' 0}} show-collapse-item-title{{/if}}"></span> 
+{{/if}}
+<a href="{{url}}">{{name}}</a>
+{{#if children}}
+  <ul class="sub-category-nav collapse-item-content{{#if @index '==' 0}} show-collapse-item-content{{/if}}">
+    {{#each children}}
+      <li class="nav-submenu-item {{#if children}}has-dropdown{{/if}}">
+         {{> components/home/navigation-featured-item}} 
+      </li>
+    {{/each}}
+  </ul>
+{{/if}}

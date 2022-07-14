@@ -1,0 +1,11 @@
+<section class="navigation-featured faceted-search-filter-list show-filter-list">
+  <nav class="" data-current-category="{{categoryid}}">
+    <ul class="">
+      {{#each categories}}
+        <li class="{{#if children}}has-children{{/if}}" data-category="{{id}}" data-category-current="{{categoryid}}">
+          {{> components/home/navigation-featured-item}}
+        </li>
+      {{/each}}
+    </ul>
+  </nav>
+</section>

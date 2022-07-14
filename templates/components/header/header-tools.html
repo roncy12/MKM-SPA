@@ -1,0 +1,63 @@
+<div class="header-tools">
+  {{> components/header/top}}
+  <ul class="header-tools-inner">
+
+    <li class="header-tools-item navigation-toggle-mobile-container">
+      <button class="navigation-toggle-mobile-wrapper">
+        <span class="navigation-toggle-mobile"><i class="fa fa-bars"></i></span>
+      </button>
+    </li>
+
+    {{#if settings.account_creation_enabled}}
+      <li class="header-tools-item">
+        {{#if customer}}
+          <a href="{{urls.account.index}}">
+            <i class="fa fa-user"></i>
+            <span class="label">{{lang 'header.account'}}</span>
+          </a>
+        {{else}}
+          <a href="{{urls.auth.login}}">
+            <i class="fa fa-user"></i>
+            <span class="label">{{lang 'header.account'}}</span>
+          </a>
+        {{/if}}
+      </li>
+    {{/if}}
+
+    <li class="header-tools-item">
+      <a href="{{urls.account.orders.all}}">
+        <i class="fa fa-list-ul"></i> 
+        <span class="label">{{lang 'header.order_status'}}</span>
+      </a>
+    </li>
+
+    {{#if settings.show_wishlist}}
+    <li class="header-tools-item">
+      <a href="{{urls.account.wishlists.all}}">
+        <i class="fa fa-heart"></i>
+        <span class="label">{{lang 'header.wishlist'}}</span>
+      </a>
+    </li>
+    {{/if}}
+
+    {{#if settings.gift_certificates_enabled}}
+    <li class="header-tools-item">
+        <a href="{{urls.gift_certificate.purchase}}">
+          <i class="fa fa-gift"></i>
+          <span class="label">{{lang 'header.gift_cert'}}</span>
+        </a>
+    </li>
+    {{/if}}
+
+    <li class="header-tools-item cart-toggle {{#if cart.items}}has-cart-items{{/if}}">
+      <a class="cart-preview-trigger" href="#">
+        <i class="fa fa-shopping-cart"></i>
+        <span class="label">{{lang 'header.cart'}}</span>
+      </a>
+      <div class="cart-preview">
+        {{> components/cart/cart-preview}}
+      </div>
+    </li>  
+
+  </ul>
+</div>

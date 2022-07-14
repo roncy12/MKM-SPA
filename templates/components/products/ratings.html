@@ -1,0 +1,10 @@
+<div class="rating-stars stars-{{size}}" aria-hidden="true">
+  {{#enumerate 1 5}}
+    {{#compare ../rating this operator='>='}}
+      <span class="fa fa-star"></span>
+    {{else}}
+      <span class="fa fa-star-o"></span>
+    {{/compare}}
+  {{/enumerate}}
+</div>
+{{{snippet 'product_rating'}}}

@@ -1,0 +1,1 @@
+{"components/navigation-item":"\n<a href=\"{{url}}\">{{name}}</a>{{#if children}}<i class=\"nav-icon\"></i>{{/if}}\n{{#if children}}\n  <ul class=\"navigation-tier nav-submenu\">\n    {{#each children}}\n      <li class=\"nav-submenu-item {{#if children}}has-dropdown{{/if}}\">\n        {{> components/navigation-item}}\n      </li>\n    {{/each}}\n  </ul>\n{{/if}}\n"}

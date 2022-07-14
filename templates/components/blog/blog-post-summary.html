@@ -1,0 +1,17 @@
+<article class="post">
+  {{#if thumbnail.data.length}}
+    <a class="post-thumb" href="{{url}}" style="background-image: url({{getImage thumbnail 'blog-thumb'}});">
+      <img src="{{getImage thumbnail 'blog-thumb'}}" alt="{{thumbnail.alt}}" />
+    </a>
+  {{/if}}
+  <div class="post-content">
+    {{> components/blog/blog-post-meta author=author date_published=date_published}}
+    <h2 class="post-title"><a href="{{url}}">{{title}}</a></h2>
+    <div class="post-summary">{{{summary}}}{{#if show_read_more}}&hellip;{{/if}}</div>
+    <div class="post-summary-actions">
+      {{#if show_read_more}}
+        <a class="post-read-more" href="{{url}}">{{ lang 'blog.read_more' }}</a>
+      {{/if}}
+    </div>
+  </div>
+</article>
