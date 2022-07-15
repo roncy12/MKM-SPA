@@ -1,8 +1,10 @@
 <div class="header-tools">
-  {{> components/header/top}}
+  <div id="mobile-hide">
+    {{> components/header/top}}
+  </div>
   <ul class="header-tools-inner">
 
-    <li class="header-tools-item navigation-toggle-mobile-container">
+    <li class="header-tools-item navigation-toggle-mobile-container" id="mobile-hide">
       <button class="navigation-toggle-mobile-wrapper">
         <span class="navigation-toggle-mobile"><i class="fa fa-bars"></i></span>
       </button>
@@ -12,19 +14,21 @@
       <li class="header-tools-item">
         {{#if customer}}
           <a href="{{urls.account.index}}">
-            <i class="fa fa-user"></i>
-            <span class="label">{{lang 'header.account'}}</span>
+            <!-- <i class="fa fa-user"></i> -->
+            <img class="lazyload" data-sizes="auto" src="{{cdn 'icons/icon-awesome-user-circle.svg'}}" width="27" height="27">
+            <span class="label" style="display: none;">{{lang 'header.account'}}</span>
           </a>
         {{else}}
           <a href="{{urls.auth.login}}">
-            <i class="fa fa-user"></i>
-            <span class="label">{{lang 'header.account'}}</span>
+            <!-- <i class="fa fa-user"></i> -->
+            <img class="lazyload" data-sizes="auto" src="{{cdn 'icons/icon-awesome-user-circle.svg'}}" width="27" height="27">
+            <span class="label" style="display: none;">{{lang 'header.account'}}</span>
           </a>
         {{/if}}
       </li>
     {{/if}}
 
-    <li class="header-tools-item">
+    <li class="header-tools-item" id="mobile-hide">
       <a href="{{urls.account.orders.all}}">
         <i class="fa fa-list-ul"></i> 
         <span class="label">{{lang 'header.order_status'}}</span>
@@ -32,7 +36,7 @@
     </li>
 
     {{#if settings.show_wishlist}}
-    <li class="header-tools-item">
+    <li class="header-tools-item" id="mobile-hide"> 
       <a href="{{urls.account.wishlists.all}}">
         <i class="fa fa-heart"></i>
         <span class="label">{{lang 'header.wishlist'}}</span>
@@ -41,7 +45,7 @@
     {{/if}}
 
     {{#if settings.gift_certificates_enabled}}
-    <li class="header-tools-item">
+    <li class="header-tools-item" id="mobile-hide">
         <a href="{{urls.gift_certificate.purchase}}">
           <i class="fa fa-gift"></i>
           <span class="label">{{lang 'header.gift_cert'}}</span>
@@ -51,9 +55,14 @@
 
     <li class="header-tools-item cart-toggle {{#if cart.items}}has-cart-items{{/if}}">
       <a class="cart-preview-trigger" href="#">
-        <i class="fa fa-shopping-cart"></i>
-        <span class="label">{{lang 'header.cart'}}</span>
+        <!-- <i class="fa fa-shopping-cart"></i> -->
+        <img class="lazyload" data-sizes="auto" src="{{cdn 'icons/icon-awesome-shopping-cart.svg'}}" width="27" height="27">
+        <span class="label" style="display: none;">{{lang 'header.cart'}}</span>
+        <span class="cart-count">{{cart.quantity}}</span>
+
+
       </a>
+
       <div class="cart-preview">
         {{> components/cart/cart-preview}}
       </div>
@@ -61,3 +70,8 @@
 
   </ul>
 </div>
+
+<script type="text/javscript">
+
+  console.log()
+</script>

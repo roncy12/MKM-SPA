@@ -1,3 +1,18 @@
+<div class="pre-footer-section">
+  <div class="container">
+    <div class="section-title"><h2>Why Choose MKM Pool Spa</h2></div>
+    <div class="logo-text-section">
+      <div class="logo-section">
+        <img src="{{cdn '../img/MKM-logo.png'}}" alt="mkm pool spa image logo" width="200" height="200">
+      </div>
+      <div class="image-section">
+        <p>MKM Pool Spa is a North Carolina-based pool and spa supply company with over 50 years of knowledge experience in the swimming pool and spa industry. At MKM Pool Spa, we’re proud to provide services for home pool and spa owners everywhere, with a variety of products, chemicals, and equipment to suit all your maintenance and cleaning needs.</p>
+        <a href="" class="action-btn" target="_blank">Read More</a>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <footer class="main-footer">
   <div class="footer-top">
@@ -7,7 +22,8 @@
             <p class="ft-logo"><a href="{{urls.home}}">
               <img src="/product_images/uploaded_images/logo-mkm-pool-spa-alt.png" alt="{{settings.store_logo.title}}">
             </a></p>
-          <ul class="footer-contact-info">
+            <p class="center">	&copy; <script>document.write(new Date().getFullYear())</script> {{lang 'footer.credits.copyright' name=settings.store_name}} <br/> All right reserved.</p>
+          <ul class="footer-contact-info" style="display: none">
             <li>
               <span class="svg-icon svg-icon-contact"><i class="fa fa-envelope"></i></span>
               <p><strong class="display-block">{{lang 'footer.about.gcontact_label'}}</strong>
@@ -30,10 +46,53 @@
         </div>
       </section>
 
-      <section class="footer-right" style="display: none">
+      <section class="footer-mdl">
+        <div class="ft-in">
+          <div class="footer-navigation">
+            <div class="footer-item-wrap nav-popular-brands">
+              <!-- {{lang 'footer.headings.popular_brands'}} -->
+              <h3 class="footer-section-title collapse-item-title">Products</h3>
+              <div class="collapse-item-content">   
+                <ul>
+                  {{#each categories}}
+                    <li><a href="{{url}}">{{name}}</a></li>
+                  {{/each}}
+                </ul>
+              </div>
+            </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="footer-mdl">
+          <div class="ft-in">
+            <div class="footer-navigation">
+              <div class="footer-item-wrap nav-popular-brands">
+                <h3 class="footer-section-title collapse-item-title">{{lang 'footer.headings.qlinks'}}</h3>
+                <div class="collapse-item-content">   
+                  <ul class="footer-navigation-list">
+                    <li><a href="/about-us/">About Us</a></li>
+                    <li><a href="/contact-us/">Contact</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/customer-service/">Customer Service</a></li>
+                    <li><a href="/frequently-asked-questions/">Frequently Asked Questions</a></li>
+                    <li><a href="/privacy/">Privacy</a></li>
+                    {{#if theme_settings.sitemap}}
+                      <li>
+                        <a href="{{urls.sitemap}}">{{lang 'sitemap.heading'}}</a>
+                      </li>
+                    {{/if}}
+                  </ul>
+                </div>
+              </div>
+              </div>
+          </div>
+        </section>
+
+      <section class="footer-right">
 
           {{#if settings.show_newsletter_box}}
-            <div class="footer-item-wrap footer-newsletter" id="newsletter-list">
+            <div class="footer-item-wrap footer-newsletter" id="newsletter-list" style="display: none;">
               <h3 class="footer-section-title">{{lang 'newsletter.heading'}}</h3>
               <form class="footer-newsletter-form form" action="{{urls.subscribe.action}}" method="post">
                 <input type="hidden" name="action" value="subscribe">
@@ -47,6 +106,9 @@
               </form>
             </div>
           {{/if}}
+
+
+
 
         <div class="ft-in">
         {{#if page_type '===' 'default'}}
@@ -99,7 +161,7 @@
       </section>
     </div>
   </div>
-  <div class="container">
+  <div class="container" style="display: none;">
     <div class="footer-btm">
     {{#if theme_settings.theme_copyright}}
       <div class="footer-copyright">

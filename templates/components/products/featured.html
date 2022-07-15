@@ -1,14 +1,51 @@
+
+<link rel="stylesheet" type="text/css" href="http://kenwheeler.github.io/slick/slick/slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <section class="section layout-block featured-products {{#if quickshop}}quickshop-enabled{{/if}}" data-quickshop>
   <div class="container">
     <h2 class="section-title"><span class="title-in">{{lang 'home.featured_products'}}</span></h2>
     <div class="product-grid-container">
       <div class="product-grid-list">
-        <div class="product-grid-list-items {{rowcount}}">
+        <div class="product-grid-list-items slick-carousel"  data-slick='{
+          "infinite": false,
+          "mobileFirst": true,
+          "slidesToShow": 2,
+          "slidesToScroll": 2,
+          "slide": "[data-product-slide]",
+          
+          "responsive": [
+              {
+                  "breakpoint": 800,
+                  "settings": {
+                      "slidesToShow": 4,
+                      "slidesToScroll": 4
+                  }
+              },
+              {
+                  "breakpoint": 550,
+                  "settings": {
+                      "slidesToShow": 3,
+                      "slidesToScroll": 3
+                  }
+              }
+          ]
+      }'>
           {{#each products}}
-            {{> components/products/product-item crop=../crop}}
+           
+              {{> components/products/product-item crop=../crop}}
+
           {{/each}}
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  $('.slick-carousel').slick({
+    dots: false,
+    arrows: true
+});
+</script>

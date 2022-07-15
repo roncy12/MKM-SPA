@@ -9904,6 +9904,7 @@ $auth-font-size: $account-font-size !default;
   @include breakpoint(l-only) {
     padding: 0;
     background-color: transparent;
+
   }
 
   .header-topbar-inner {
@@ -10212,18 +10213,18 @@ $auth-font-size: $account-font-size !default;
 
   .cart-count {
     position: absolute;
-    top: 50%;
-    left: 100%;
+    top: 39%;
+    left: 85%;
     display: block;
     min-width: 16px;
-    padding: 2px;
+    padding: 3px 6px;
     margin-top: -16px;
     font-size: 11px;
     font-weight: 400;
     line-height: 12px;
     color: $primary-text-color;
     text-align: center;
-    background-color: $primary-color;
+    background-color: #FF0000;
     border-radius: 50%;
   }
   .fa{
@@ -11526,11 +11527,7 @@ $page-banner-border: darken($banner-background-color, 18%);
   padding-right: $gutter * 2;
   padding-left: $gutter * 2;
   width: 85%;
-  margin: 0 auto;
-  padding: 0;
-  max-width: 1920px;
-  display: flex;
-  align-items: center;
+
   @include breakpoint(l-only) {
     padding-right: 20px;
     padding-left: 20px;
@@ -11600,7 +11597,7 @@ $page-banner-border: darken($banner-background-color, 18%);
       height: 0;
       margin-top: -2px;
       margin-right: -4px;
-      border-top: 5px solid $navigation-color;
+      border-top: 5px solid #fff;
       border-right: 5px solid transparent;
       border-left: 5px solid transparent;
       content: "";
@@ -11610,7 +11607,7 @@ $page-banner-border: darken($banner-background-color, 18%);
       }
     }
 
-    &:hover::after { border-top-color: $navigation-active-color; }
+    &:hover::after { border-top-color: #fff; }
     &:hover > ul{display:block !important;}
   }
 
@@ -12680,6 +12677,8 @@ $page-banner-border: darken($banner-background-color, 18%);
     margin-bottom: 15px;
     font: 400 $product-list-title-font-size $body-font;
     line-height: 1.5;
+    text-align: left;
+
 
     a {
       color: $dark-accent-color;      
@@ -16391,7 +16390,7 @@ td, th{
 .footer-contact-info{
   li{
     position: relative;
-    padding: 0 0 5px 35px;
+    padding: 0 0 5px 0px;
     .svg-icon{
       position: absolute;
       left: 0;

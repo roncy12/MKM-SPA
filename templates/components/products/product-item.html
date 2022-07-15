@@ -2,7 +2,7 @@
 <script src="https://app.akin2.io/widget/widget-generator.js?s=51&h=d41d8cd98f00&limit=12&search={{name}}" type="text/javascript" async defer>
 </script>
 <link rel="stylesheet" type="text/css" href="https://app.akin2.io/widget/basic.css">-->
-<article class="product-grid-item">
+<article class="product-grid-item" data-product-slide>
   {{#if out_of_stock_message.length}}
     <span class="product-grid-item-sale-badge stock-out">{{out_of_stock_message}}</span>
   {{else}}
@@ -46,7 +46,11 @@
 
     <div class="product-grid-item-price">
       {{> components/products/price price=price}}
+      <button class="action-btn" data-quick-shop-trigger="{{id}}">Add to Cart</span>
+      
     </div>
+
+
   </div>
 
 </article>

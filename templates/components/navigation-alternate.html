@@ -96,8 +96,9 @@
               {{lang 'header.search_submit'}}
           </button>
         </form>
-        <p class="search-ext-text"><a href="/search.php" class="adv-search-link">{{lang 'header.advanced_search'}}</a></p>
+        <p class="search-ext-text" style="display: none;"><a href="/search.php" class="adv-search-link">{{lang 'header.advanced_search'}}</a></p>
       </div>
+      
 
 
       <div class="mobile-main-navigation">
@@ -116,6 +117,10 @@
         </ul>
       </div>
     </div>
+
+    {{> components/header/header-tools}}
+
   </nav>
 
 </section>
+
