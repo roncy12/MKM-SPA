@@ -18,23 +18,37 @@ blog:
     {{#if carousel}}
     <div class="home-carousel">
       {{> modules/carousel}}
+      <!-- Absolute Section -->
+
+      <section class="page-banner page-banner-top home-banner" id="abs-content">
+          <div class="page-banner-inner">
+            <div class="banner rte">
+                <h2 class="banner-h2">Welcome to MKM Pool Spa!</h2>
+                <p class="banner-p">We have the best selection of premium pool and spa maintenance supplies, chemicals,<br/> testing equipment, cleaners, and more.</p>
+            </div>
+          </div>
+      </section>
+
+      <!-- End of Absolute Section -->
     </div>
     {{/if}}
   {{/if}}
 
   {{#if page_type '===' 'default'}}
-    {{#if banners.top}}
-      <section class="page-banner page-banner-top home-banner">
-        {{#each banners.top}}
-          <div class="page-banner-inner">
-            <div class="banner rte">
-              {{{this}}}
-            </div>
+  {{#if banners.top}}
+    <section class="page-banner page-banner-top home-banner" id="abs-content" style="display:none;">
+      {{#each banners.top}}
+        <div class="page-banner-inner">
+          <div class="banner rte">
+            {{{this}}}
           </div>
-        {{/each}}
-      </section>
-    {{/if}}
+        </div>
+      {{/each}}
+    </section>
   {{/if}}
+{{/if}}
+
+
 
   {{{snippet 'home_content'}}}
   
@@ -174,22 +188,13 @@ jQuery(document).ready(function($){
 </script>
 
 <style>
-  .product-grid-item-details h3, .product-grid-item-details h3 a {
-    margin-bottom: 10px;
-    line-height: 1.5;
-    text-align: left;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-weight: 600;
-  }
+
   .product-price {
     margin-bottom: 1rem;
     text-align: left;
 }
   span> span[data-product-price] {
-    color: #0B85C8;
+    color: #004974;
     font-size: 18px;
     font-weight: 600;
     text-align: left;

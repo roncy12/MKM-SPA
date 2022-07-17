@@ -376,7 +376,7 @@ a.action-btn {
 .product-grid-item-price .action-btn{
     background: linear-gradient(to bottom, #0b85c8 0%, #0b85c8 50%, #096aa0 52%, #096aa0 71%, #096aa0 84%, #096aa0 100%);
     display: block;
-    padding: 0.5rem 1.5rem;
+    padding: 0.7rem 1.5rem;
     color: #fff;
     border-radius: 8px;
     width: 100%;
@@ -400,4 +400,63 @@ a.action-btn {
 
 ul.footer-contact-info li {
     line-height: 0.8;
+}
+
+.product-grid-item-price .action-btn:hover {
+    filter: brightness(85%);
+}
+
+
+.home-carousel, .main-content, .carousel-wrap.slide-fixed{
+    position: relative;
+}
+
+section#abs-content {
+    position: absolute;
+    bottom: -15%;
+    z-index: 99;
+    background: #fff;
+    width: 100%;
+    border-radius: 100% 100% 0 0;
+    padding: 3rem 0 3rem 1rem;
+    margin-bottom: 0rem;
+}
+
+.slide-fixed .carousel {
+    max-width: 1920px;
+    padding: 0;
+}
+.banner-h2{
+    color: #0B85C8;
+    text-align: center;
+}
+.banner-p{
+    text-align: center;
+}
+
+.product-grid-item-price .price-rrp {
+    color: #404040;
+    opacity: 0.4;
+}
+
+.slick-track
+{
+    display: flex !important;
+}
+
+.slick-slide {
+    height: auto!important;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 0.5rem;
+}
+
+.product-grid-item-sale-badge{
+    top: 0;
+    right: 0;
+}
+
+.search-form-header .search-submit{
+    width: 120px;
 }

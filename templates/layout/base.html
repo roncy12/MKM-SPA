@@ -16,7 +16,12 @@
 
   <link href="{{head.favicon}}" rel="shortcut icon">
 
+
+
+
   {{{stylesheet '/assets/css/theme.css'}}}
+
+
 
   {{getFontsCollection}}
 
@@ -107,7 +112,15 @@
   {{/if}}
 
 
-
+  <style>
+    .product-grid-item-details h3 a, .product-grid-item-details h3 {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+  }
+  </style>
 
 
   {{{footer.scripts}}}
