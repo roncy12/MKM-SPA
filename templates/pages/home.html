@@ -63,17 +63,90 @@ blog:
   {{/if}}
 
    
-  <div class="home-featured-products"> 
+  <div class="home-featured-products" style="display:none;"> 
     {{> components/products/popular
       products=products.top_sellers
       quickshop=theme_settings.show_quick_shop
       rowcount=theme_settings.popular_products_per_row
       crop=theme_settings.grid_aspect_ratio}}
-
-
   </div>
 
-  {{> components/home/featured-categories}}
+<!-- BEST SELLER -->
+<div class="home-featured-products">
+  <section class="layout-block popular-products {{#if quickshop}}quickshop-enabled{{/if}}" data-quickshop>
+    <h2 class="section-title"><span class="title-in">Our Bestsellers</span></h2>
+    
+    <div class="best-seller-container">
+        <div class="first-grid">
+            <div>
+              <img src="{{cdn '../img/kai-resort-pillow.png'}}" alt="kai-resort-pillow" width="100%" height="auto" id="kai-resort-img">
+              <div class="item-logo"></div>
+              <h4><a href="">Kai Resort Pillow - Aquamarine</a></h4>
+            </div>
+        </div>
+        <div class="second-grid">
+          <div>
+            <img src="{{cdn '../img/metalshield-metal-stain.png'}}" alt="Metal Shield Stain Remover" width="100%" height="auto">
+           
+            <div class="abs-con">
+              <img src="{{cdn '../icons/halfmask.svg'}}" alt="halfmask" width="100%" height="auto" id="halfmask-img">
+              <div class="d-flex">
+                <div class="item-logo"></div>
+                <h4><a href="">MetalShield Metal Stain Remover</a></h4>
+              </div>
+            </div>
+
+
+          </div>
+          <div>
+            <img src="{{cdn '../img/omni-pool-chlorine.png'}}" alt="Omni Pool Chlorine Stabilizer" width="100%" height="auto">
+            
+            <div class="abs-con">
+              <img src="{{cdn '../icons/halfmask.svg'}}" alt="halfmask" width="100%" height="auto" id="halfmask-img">
+              <div class="d-flex">
+                <div class="item-logo"></div>
+                <h4><a href="">Omni Pool Chlorine Stabilizer</a></h4>
+              </div>  
+            </div>
+
+
+          </div>
+        </div>
+    </div>
+  
+  </section>
+</div>
+<!-- END OF BEST SELLER-->
+<!-- CATEGORIES  -->
+  <div class="home-featured-products">
+    <section class="layout-block popular-products {{#if quickshop}}quickshop-enabled{{/if}}" data-quickshop>
+      <h2 class="section-title"><span class="title-in">Categories</span></h2>
+      <ul class="categoryGrid" data-product-type="categories">
+      {{#each categories}}
+        <li class="productCat {{id}}">
+              <img src="{{cdn (concat '../img/' (concat  (lowercase (dashcase name)) '.png'))}}" alt="{{name}} Image">
+              <h4>{{name}}</h4>
+              <div class="dflex-actn">
+
+                {{#if name '==' 'Pool Chemicals'}}
+                  <p>Using the proper pool chemicals is a vital part of the maintenance routine for any swimming pool or spa.</p>
+                {{else if name '==' 'Spa Chemicals'}}
+                  <p>Being a pool and spa owner means long, relaxing soaks and hosting the occasional poolside summer barbecue.</p>
+                {{else}}
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat reprehenderit saepe dolores eum odit eveniet.</p>
+
+                {{/if}}
+                <a href="{{url}}">{{name}}</a>
+              </div>
+        </li>
+      {{/each}}
+    </ul>
+    </section>
+  </div>
+<!-- END OF CATEGORIES SECTION -->
+  <div style="display:none">
+    {{> components/home/featured-categories}}
+  </div>
 
   <div style ="display:none">
       {{#if theme_settings.homepage_products_new}}
@@ -202,7 +275,7 @@ jQuery(document).ready(function($){
 .product-price .price-without-tax span[data-product-price-wrapper="without-tax"] {
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 </style>
 {{/partial}}

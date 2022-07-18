@@ -460,3 +460,73 @@ section#abs-content {
 .search-form-header .search-submit{
     width: 120px;
 }
+
+.best-seller-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    position: relative;
+}
+
+.best-seller-container .first-grid, .best-seller-container .second-grid {
+    width: 49%;
+}
+
+#kai-resort-img{
+    border-radius: 0 0 0 50%;
+    max-height: 500px;
+}
+
+.best-seller-container .second-grid div, .best-seller-container .second-grid div img{
+    position: relative;
+}
+
+.abs-con {
+    position: absolute !important;
+    bottom: 0;
+    width: 100%;
+    padding: 0rem;
+}
+
+img#halfmask-img {
+    position: absolute;
+}
+
+.d-flex h4 {
+    padding: 3.5rem 0 0 1rem;
+    text-align: center;
+    margin: 0;
+}
+
+.second-grid {
+    display: flex;
+    flex-direction: column;
+}
+ul.categoryGrid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 2.5rem;
+}
+ul.categoryGrid li {
+    width: 49%;
+}
+
+.order1{
+    order: 1;
+}
+.order2{
+    order: 2;
+}
+.order3{
+    order: 3;
+}
+.order4{
+    order: 4;
+}
+.order5{
+    order: 5;
+}
+.order6{
+    order: 6;
+}
