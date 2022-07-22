@@ -483,7 +483,7 @@ section#abs-content {
 
 .abs-con {
     position: absolute !important;
-    bottom: 0;
+    bottom: 14%;
     width: 100%;
     padding: 0rem;
 }
@@ -533,4 +533,32 @@ ul.categoryGrid li {
 .stamped-logo-text div p {
     font-size: 24px;
     font-weight: bold;
+}
+
+.first-grid, .first-grid div img#stable {
+    position: relative !important;
+}
+
+.abs-con.abs-grid .d-flex {
+    position: absolute;
+    bottom: 6%;
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    left: 5%;
+}
+.abs-grid{
+    top: 0;
+    bottom: 0;
+}
+
+.abs-con.abs-grid .d-flex .item-logo {
+    background: #5F8DA4;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+.abs-con.abs-grid .d-flex h4 {
+    padding: 0 0 0rem 2rem;
 }
