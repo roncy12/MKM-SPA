@@ -347,6 +347,10 @@
     justify-content: space-between;
     width: 95%;
     margin: 0 auto 2rem;
+
+    @media screen and (max-width: 800px){
+        flex-direction: column;
+    }
 }
 
 .logo-section {
@@ -355,6 +359,9 @@
 }
 .image-section {
     width: 75%;
+    @media screen and (max-width: 800px){
+        width: auto;
+    }
 }
 .image-section p {
     margin: 0 0 2rem 0;
@@ -390,12 +397,12 @@ a.action-btn {
 .banner-cta .container {
     width: 85%;
     max-width: 1920px;
-    padding: 0;
+    padding: 1rem 0;
 }
 
 .home-featured-products .popular-products {
     width: 85%;
-    margin: 0 auto;
+    margin: 1rem auto 2.5rem;
 }
 
 ul.footer-contact-info li {
@@ -413,13 +420,19 @@ ul.footer-contact-info li {
 
 section#abs-content {
     position: absolute;
-    bottom: -15%;
-    z-index: 99;
+    bottom: 0;
+    z-index: 10;
     background: #fff;
     width: 100%;
     border-radius: 100% 100% 0 0;
     padding: 3rem 0 3rem 1rem;
     margin-bottom: 0rem;
+    left: -1%;
+    width: 102%;
+
+    @media screen and (max-width: 800px) {
+        position: relative;
+    }
 }
 
 .slide-fixed .carousel {
@@ -466,10 +479,16 @@ section#abs-content {
     width: 100%;
     justify-content: space-between;
     position: relative;
+    flex-flow: row wrap;
+    margin: 1rem 0 0;
 }
 
 .best-seller-container .first-grid, .best-seller-container .second-grid {
     width: 49%;
+
+    @media screen and (max-width: 992px) {
+        width: 100%;
+    }
 }
 
 #kai-resort-img{
@@ -493,7 +512,7 @@ img#halfmask-img {
 }
 
 .d-flex h4 {
-    padding: 3.5rem 0 0 1rem;
+    padding: 0 0 0 1rem;
     text-align: center;
     margin: 0;
 }
@@ -507,9 +526,13 @@ ul.categoryGrid {
     justify-content: space-between;
     flex-wrap: wrap;
     row-gap: 2.5rem;
+    margin: 1rem 0 0;
 }
 ul.categoryGrid li {
     width: 49%;
+    @media screen and (max-width: 992px) {
+        width: 100%;
+    }
 }
 
 .order1{
@@ -561,4 +584,152 @@ ul.categoryGrid li {
 
 .abs-con.abs-grid .d-flex h4 {
     padding: 0 0 0rem 2rem;
+}
+
+.kai-resort-img {
+    top: 0;
+}
+
+.abs-con .d-flex {
+    display: flex;
+    align-items: baseline;
+}
+
+.d-flex .item-logo img {
+    max-width: 50px;
+}
+
+.second-grid img#halfmask-img{
+    position: relative;
+}
+
+.second-grid .abs-con .d-flex {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: baseline;
+    align-items: baseline;
+    position: absolute;
+    top: 20%;
+    left: 3%;
+
+}
+.second-grid .abs-con {
+    bottom: 0;
+}
+
+.banner-parallax{
+        /* The image used */
+        background-image: url("https://cdn11.bigcommerce.com/s-cq282mw/images/stencil/original/carousel/40/bg-hero-mkm__21320.png?c=2");
+            
+        /* Set a specific height */
+            height: 480px;
+        	width: 100%;
+          
+        /* Create the parallax scrolling effect */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            z-index: 1;
+}
+
+
+  .paralax-image {
+    overflow: hidden;
+    height: 200px;
+    position: relative;
+  }
+  
+  .paralax-image img {
+    position: absolute;
+    height: 100vh;
+    min-width:100%;
+  }
+
+  li.productCat h4 {
+    color: #0B85C8;
+    margin: 0.5rem 0 0rem;
+}
+
+.dflex-actn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dflex-actn a{
+    width: 35%;
+    text-align: center;
+}
+
+.flex--cat {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    @media screen and (max-width: 800px) {
+        flex-wrap: wrap;
+    }
+}
+.flex--cat div:first-child {
+    width: 65%;
+
+    @media screen and (max-width: 800px) {
+        width: 100%;
+    }
+}
+.flex--cat .actn {
+    width: 30%;
+    @media screen and (max-width: 800px) {
+        width: 100%;
+    }
+}
+.actn .action-btn {
+    display: block;
+    text-align: center;
+    margin: 1rem 0 0;
+}
+.pre-footer-section {
+    margin: 3.5rem 0 3rem;
+}
+
+section.section.layout-block.featured-products .product-grid-list{
+    padding: 0;
+}
+.nav-menu-item.has-dropdown:hover .nav-submenu {
+    opacity: 1;
+    display: block;
+    visibility: visible;
+    z-index: 99;
+}
+.nav-submenu-item.has-dropdown:hover .nav-submenu {
+    opacity: 0 !important;
+    display: none !important;
+    visibility: hidden !important;
+
+}
+
+.cart-preview-wrap{
+    z-index: 199;
+}
+
+.product-grid-list .slick-next:before{
+    content: url('../img/iconic-direction-2.png');
+}
+.product-grid-list .slick-prev:before{
+    content: url("../img/iconic-direction-2.png");
+    transform: rotate(180deg);
+    display: block;
+}
+li.nav-submenu-item.has-dropdown .nav-submenu {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+.main-navigation{
+    z-index: 99;
+}
+
+.actn .action-btn:hover, .action-btn:hover, button.search-submit:hover {
+    filter: brightness(85%);
 }

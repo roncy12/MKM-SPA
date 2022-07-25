@@ -6,9 +6,11 @@
     <div class="carousel-slides" data-carousel-slides>
       {{#each carousel.slides}}
         <figure class="carousel-item">
+          <div class="parallax-image">
           <a class="carousel-item-image" href="{{url}}">
             <img src="{{this.image}}" alt="{{{alt_text}}}" />
           </a>
+          </div>
           <figcaption class="carousel-item-info">
             {{#unless button_text}}{{#if url}}
               <a class="carousel-item-link" href="{{url}}">

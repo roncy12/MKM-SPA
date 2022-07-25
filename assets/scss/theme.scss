@@ -10457,7 +10457,7 @@ $auth-font-size: $account-font-size !default;
   position: absolute;
     top: 50px;
   right: -1px;
-    z-index: 1;
+    z-index: 99;
   display: none;
   width: 360px;
   text-align: left;
